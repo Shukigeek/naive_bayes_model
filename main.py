@@ -6,6 +6,7 @@ from model.Evaluation import ModelTester
 from ui.cli_interface import get_input_from_user
 from ui.message import greet_user
 from ui.plot_utils import plot_prediction_results
+from Data.json_handler import get_db_config
 
 
 def main():
@@ -16,7 +17,8 @@ def main():
     loader = DataLoader()
     # loader.load_data("C:/Users/shuki/AppData/Local/Microsoft/Windows/INetCache/IE/PQVOU4RU/buy_computer_data[1].csv","csv")
     # loader.load_data("all_star.csv", "csv")
-    loader.load_from_mysql("root","","localhost","complaints","SELECT * FROM complaints")
+    user, password, host, database, query = get_db_config()
+    loader.load_from_mysql(user, password, host, database, query)
     # 2. ניקוי דאטה
     print("🧹 Cleaning data...")
     loader.clean(Clean())

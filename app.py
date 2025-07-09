@@ -3,6 +3,7 @@ from model.naive_bayes_model import Model
 from model.prediction import Predict
 from Data.interactor import DataLoader
 from cleaning.Clean_Data import Clean
+from Data.json_handler import get_db_config
 
 
 # טעינת דאטה
@@ -10,7 +11,8 @@ from cleaning.Clean_Data import Clean
 def load_model():
     loader = DataLoader()
     loader.load_data("all_star.csv","csv")
-    # loader.load_from_mysql("root", "", "localhost", "complaints", "SELECT * FROM complaints")
+    # user, password, host, database, query = get_db_config()
+    # loader.load_from_mysql(user, password, host, database, query)
     loader.clean(Clean())
     df = loader.get_df()
     model = Model(df, "Label")
