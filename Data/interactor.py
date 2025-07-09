@@ -34,10 +34,10 @@ class DataLoader:
             response = requests.get(url)
             response.raise_for_status()
             data = response.json()
-            # אם ה־JSON הוא רשימה של מילונים
+
             if isinstance(data, list):
                 self.df = pd.DataFrame(data)
-            # אם יש מפתח אחד שמחזיק את הרשימה
+
             elif isinstance(data, dict):
                 for key, value in data.items():
                     if isinstance(value, list):

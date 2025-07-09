@@ -14,8 +14,9 @@ def main():
     # 1. טעינת דאטה
     print("📂 Loading dataset...")
     loader = DataLoader()
-    loader.load_data("C:/Users/shuki/AppData/Local/Microsoft/Windows/INetCache/IE/PQVOU4RU/buy_computer_data[1].csv", "csv")
-
+    # loader.load_data("C:/Users/shuki/AppData/Local/Microsoft/Windows/INetCache/IE/PQVOU4RU/buy_computer_data[1].csv","csv")
+    # loader.load_data("all_star.csv", "csv")
+    loader.load_from_mysql("root","","localhost","complaints","SELECT * FROM complaints")
     # 2. ניקוי דאטה
     print("🧹 Cleaning data...")
     loader.clean(Clean())
@@ -23,7 +24,7 @@ def main():
 
     # 3. יצירת המודל
     print("🧠 Creating model...")
-    target_column = "buys_computer"  # או לשאול את המשתמש
+    target_column = "החלטה"
     model = Model(df, target_column)
     model.create_model()
 
@@ -31,7 +32,7 @@ def main():
     print("🔎 Testing model on full dataset...")
     tester = ModelTester(model)
     tester.test_full_dataset_prediction()
-    tester.test_with_train_test_split(test_size=0.3)
+    tester.test_with_train_test_split()
 
     # 5. אינטראקציה עם המשתמש לחיזוי
     print("\n👤 Now let's make a prediction based on your input:")
@@ -40,7 +41,7 @@ def main():
     results = predictor.predict_row(example_row)
     predictor.print_prediction_results(results)
     #for a graph
-    # plot_prediction_results(results)
+    plot_prediction_results(results)
 
 if __name__ == "__main__":
     main()
