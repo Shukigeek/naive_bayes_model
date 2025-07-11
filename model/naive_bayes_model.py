@@ -8,7 +8,6 @@ class Model:
         self.features = self._get_features()
         self.labels = self._get_labels()
         self.model = {}
-        self.results = {}
 
     def _validate_input(self, df: pd.DataFrame, classified: str):
         if df is None or df.empty:

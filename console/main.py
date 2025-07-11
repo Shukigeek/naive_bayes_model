@@ -16,9 +16,9 @@ def main():
     print("📂 Loading dataset...")
     loader = DataLoader()
     # loader.load_data("C:/Users/shuki/AppData/Local/Microsoft/Windows/INetCache/IE/PQVOU4RU/buy_computer_data[1].csv","csv")
-    # loader.load_data("all_star.csv", "csv")
-    user, password, host, database, query = get_db_config()
-    loader.load_from_mysql(user, password, host, database, query)
+    loader.load_data(r"C:\Users\shuki\Desktop\Naivebayse\all_star.csv", "csv")
+    # user, password, host, database, query = get_db_config()
+    # loader.load_from_mysql(user, password, host, database, query)
     # 2. ניקוי דאטה
     print("🧹 Cleaning data...")
     loader.clean(Clean())
@@ -26,7 +26,7 @@ def main():
 
     # 3. יצירת המודל
     print("🧠 Creating model...")
-    target_column = "החלטה"
+    target_column = "Label"
     model = Model(df, target_column)
     model.create_model()
 

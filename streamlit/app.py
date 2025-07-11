@@ -1,16 +1,22 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
 import streamlit as st
 from model.naive_bayes_model import Model
 from model.prediction import Predict
 from Data.interactor import DataLoader
 from cleaning.Clean_Data import Clean
-from Data.json_handler import get_db_config
+
 
 
 # טעינת דאטה
 @st.cache_data
 def load_model():
     loader = DataLoader()
-    loader.load_data("all_star.csv","csv")
+    loader.load_data(r"C:\Users\shuki\Desktop\Naivebayse\all_star.csv","csv")
     # user, password, host, database, query = get_db_config()
     # loader.load_from_mysql(user, password, host, database, query)
     loader.clean(Clean())
